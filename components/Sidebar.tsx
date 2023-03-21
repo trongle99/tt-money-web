@@ -42,12 +42,12 @@ const Sidebar = () => {
                     <div className="mt-10">
                         <ul>
                             <li>
-                                <a
-                                    href="#"
+                                <Link
+                                    href="/about"
                                     className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2 bg-gray-400"
                                 >
                                     Sidebar Item 1
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a

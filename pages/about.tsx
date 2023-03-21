@@ -1,7 +1,12 @@
+import Layout from '@/components/Layout';
 import React from 'react';
 
-export interface AboutPageProps {}
+const about = () => {
+    return (
+        <Layout>
+            <h1>About page</h1>
+        </Layout>
+    );
+};
 
-export default function AboutPage(props: AboutPageProps) {
-    return <div>hello about</div>;
-}
+export default about;
