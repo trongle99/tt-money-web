@@ -1,11 +1,13 @@
-import Link from 'next/link';
-import React from 'react';
-import { SiShopware } from 'react-icons/si';
-import { MdOutlineCancel } from 'react-icons/md';
+import { menu } from '@/constants/menu';
 import { globalStore } from '@/store/store';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { MdOutlineCancel } from 'react-icons/md';
+import { SiShopware } from 'react-icons/si';
 
 const Sidebar = () => {
     const { activeMenu, setActiveMenu, screenSize } = globalStore();
+    const router = useRouter();
 
     const handleCloseSideBar = () => {
         if (activeMenu !== undefined && screenSize <= 900) {
@@ -13,7 +15,8 @@ const Sidebar = () => {
         }
     };
 
-    const activeLink = 'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2';
+    const activeLink =
+        'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2 bg-gray-500';
     const normalLink =
         'flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2';
 
@@ -41,30 +44,21 @@ const Sidebar = () => {
                     </div>
                     <div className="mt-10">
                         <ul>
-                            <li>
-                                <Link
-                                    href="/about"
-                                    className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2 bg-gray-400"
-                                >
-                                    Sidebar Item 1
-                                </Link>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-[#F7F7F7] m-2"
-                                >
-                                    Sidebar Item 2
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="#"
-                                    className="flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-[#F7F7F7] m-2"
-                                >
-                                    Sidebar Item 3
-                                </a>
-                            </li>
+                            {menu.map((menu, index) => (
+                                <li key={index}>
+                                    <Link
+                                        href={menu.link}
+                                        className={
+                                            router.pathname === menu.link
+                                                ? activeLink
+                                                : normalLink
+                                        }
+                                    >
+                                        {menu.icon}
+                                        {menu.title}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </>

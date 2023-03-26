@@ -12,11 +12,23 @@ const Layout = ({ children }: any) => {
             <Head>
                 <title>TT Money</title>
                 <meta name="description" content="TT Money web app" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1"
+                />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className="flex relative dark:bg-main-dark-bg">
+            <main className="flex relative dark:bg-main-dark-bg">
+                {activeMenu ? (
+                    <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white z-10">
+                        <Sidebar />
+                    </div>
+                ) : (
+                    <div className="w-0 dark:bg-secondary-dark-bg">
+                        <Sidebar />
+                    </div>
+                )}
                 <div
                     className={
                         activeMenu
@@ -30,17 +42,7 @@ const Layout = ({ children }: any) => {
                     {children}
                     <Footer />
                 </div>
-
-                {activeMenu ? (
-                    <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-                        <Sidebar />
-                    </div>
-                ) : (
-                    <div className="w-0 dark:bg-secondary-dark-bg">
-                        <Sidebar />
-                    </div>
-                )}
-            </div>
+            </main>
         </>
     );
 };
